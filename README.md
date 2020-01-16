@@ -45,8 +45,7 @@ See below to learn more about running `kafka-tools` for admin tasks.
 
 1. To access the Control Center, visit [http://localhost:9021](http://localhost:9021)
 2. To access the Rest Proxy, interact with [http://localhost:8082](http://localhost:8082)
-3. Broker is available at `localhost:9092`
-4. Zookeeper is available at `localhost:2181`
+3. Broker is available at `localhost:19092`
 
 ### Running Kafka Tools
 

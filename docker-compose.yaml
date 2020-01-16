@@ -110,7 +110,6 @@ services:
       - schema-registry
     ports:
       - "9021:9021"
-      - "9022:9022"
     environment:
       CONTROL_CENTER_LOG4J_ROOT_LOGLEVEL: INFO
       CONTROL_CENTER_LOG4J_LOGLEVEL: INFO
@@ -129,7 +128,7 @@ services:
       CONTROL_CENTER_INTERNAL_TOPICS_PARTITIONS: 1
       CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
       CONFLUENT_METRICS_TOPIC_REPLICATION: 1
-      CONTROL_CENTER_REST_LISTENERS: "http://0.0.0.0:9021,https://0.0.0.0:9022"
+      CONTROL_CENTER_REST_LISTENERS: "http://0.0.0.0:9021"
       CONTROL_CENTER_REST_SSL_TRUSTSTORE_LOCATION: /etc/kafka/secrets/kafka.control-center.truststore.jks
       CONTROL_CENTER_REST_SSL_TRUSTSTORE_PASSWORD: awesomekafka
       CONTROL_CENTER_REST_SSL_KEYSTORE_LOCATION: /etc/kafka/secrets/kafka.control-center.keystore.jks
