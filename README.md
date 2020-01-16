@@ -1,6 +1,7 @@
 ## 💥 Local Kafka Cluster in Docker with SSL
 
-This project sets up a local Kafka cluster with Zookeeper, Confluent Control Center, Confluent Rest Proxy, and Confluent Schema Registry.
+This project sets up a local Kafka cluster with Zookeeper, Confluent Control Center, Confluent Rest Proxy, and Confluent Schema Registry.  
+
 Also included:
   - Kafka Tools (CLI tools) for administration
 
@@ -14,7 +15,7 @@ Also included:
 
 ### Starting up
 
-0. One-time set-up (or if you want to generate key secrets)
+0. One-time set-up (or if you want to generate new secrets)
   ```sh
     ./auto/create-certs.sh
   ```
