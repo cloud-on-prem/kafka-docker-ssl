@@ -1,2 +1,4 @@
 secrets/*
 !secrets/.gitkeep
+.idea
+.vscode
