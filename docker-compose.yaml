@@ -2,7 +2,7 @@
 version: "3"
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:5.3.1
+    image: confluentinc/cp-zookeeper:7.5.1
     container_name: zookeeper
     networks:
        kafka:
@@ -19,7 +19,7 @@ services:
       - zk-txn-logs:/var/lib/zookeeper/log
     
   broker:
-    image: confluentinc/cp-enterprise-kafka:5.3.1
+    image: confluentinc/cp-enterprise-kafka:7.5.1
     container_name: broker
     networks:
        kafka:
@@ -63,7 +63,7 @@ services:
       - ./secrets:/etc/kafka/secrets
 
   schema-registry:
-    image: confluentinc/cp-schema-registry:5.3.1
+    image: confluentinc/cp-schema-registry:7.5.1
     depends_on:
       - zookeeper
       - broker
@@ -98,7 +98,7 @@ services:
       - ./secrets:/etc/kafka/secrets
 
   control-center:
-    image: confluentinc/cp-enterprise-control-center:5.3.1
+    image: confluentinc/cp-enterprise-control-center:7.5.1
     container_name: control-center
     networks:
        kafka:
@@ -135,9 +135,9 @@ services:
       CONTROL_CENTER_REST_SSL_KEYSTORE_PASSWORD: awesomekafka
       CONTROL_CENTER_REST_SSL_KEY_PASSWORD: awesomekafka
       CONTROL_CENTER_OPTS: -Djavax.net.ssl.trustStore=/etc/kafka/secrets/kafka.control-center.truststore.jks
-                  -Djavax.net.ssl.trustStorePassword=kafka
+                  -Djavax.net.ssl.trustStorePassword=awesomekafka
                   -Djavax.net.ssl.keyStore=/etc/kafka/secrets/kafka.control-center.keystore.jks
-                  -Djavax.net.ssl.keyStorePassword=kafka
+                  -Djavax.net.ssl.keyStorePassword=awesomekafka
       PORT: 9021
     volumes:
       - ./secrets:/etc/kafka/secrets
@@ -162,12 +162,20 @@ services:
       KAFKA_SSL_TRUSTSTORE_PASSWORD: awesomekafka
       KAFKA_SSL_KEYSTORE_PASSWORD: awesomekafka
       KAFKA_SSL_KEY_PASSWORD: awesomekafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper.local:22181
+      KAFKA_ADVERTISED_LISTENERS: SSL://broker.local:19092
+      KAFKA_SSL_KEYSTORE_FILENAME: kafka.kafka-tools.keystore.jks
+      KAFKA_SSL_KEYSTORE_CREDENTIALS: kafka-tools_keystore_creds
+      KAFKA_SSL_KEY_CREDENTIALS: kafka-tools_sslkey_creds
+      KAFKA_SSL_TRUSTSTORE_FILENAME: kafka.kafka-tools.truststore.jks
+      KAFKA_SSL_TRUSTSTORE_CREDENTIALS: kafka-tools_truststore_creds
     volumes:
       - ./secrets:/etc/kafka/secrets
       - ./config:/etc/kafka/config
+      - kafka-data:/var/lib/kafka/data
 
   rest-proxy:
-    image: confluentinc/cp-kafka-rest:5.3.1
+    image: confluentinc/cp-kafka-rest:7.5.1
     depends_on:
       - zookeeper
       - broker
