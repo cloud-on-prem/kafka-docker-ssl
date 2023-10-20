@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euf -o pipefail
 
 cd "$(dirname "$0")/.." || exit
 
 ./auto/down.sh
 
-echo "💣  Deleting volumes for a clean slate."
+echo "💣  Deleting volumes for a clean state."
 
 docker volume rm zk-data > /dev/null
 docker volume rm zk-txn-logs > /dev/null

@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euf -o pipefail
 
 cd "$(dirname "$0"..)" || exit
 
-docker-compose run --rm --name=kafka-tools kafka-tools "$@"
+docker compose run --rm --name=kafka-tools kafka-tools "$@"

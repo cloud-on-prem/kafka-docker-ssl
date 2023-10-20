@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euf -o pipefail
 
 cd "$(dirname "$0"..)" || exit
@@ -10,7 +10,7 @@ docker volume create --name zk-txn-logs > /dev/null
 docker volume create --name kafka-data > /dev/null
 
 # Don't need kafka-tools to start up
-docker-compose up --detach --scale kafka-tools=0
+docker compose up --detach --scale kafka-tools=0
 
 echo ""
 echo "🐳  Kicked off the containers. Should be up in one minute (literally)."
